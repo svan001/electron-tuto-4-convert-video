@@ -69,7 +69,10 @@ ipcMain.on('convertion:start', (event, videos) => {
             .output(outputPath)
             .on('end', (event) => {
                 console.log('CONV complete !!');
-
+                mainWindow.webContents.send('conversion:end', {
+                    video,
+                    outputPath
+                });
             })
             .run();
     });
