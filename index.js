@@ -6,7 +6,8 @@ const _ = require('lodash');
 const {
     app,
     BrowserWindow,
-    ipcMain
+    ipcMain,
+    shell
 } = electron;
 
 
@@ -79,3 +80,7 @@ ipcMain.on('convertion:start', (event, videos) => {
             .run();
     });
 });
+
+ipcMain.on('folder:open', (event, outputPath) => {
+    shell.showItemInFolder(outputPath);
+})
