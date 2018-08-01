@@ -26,6 +26,10 @@ export const convertVideos = () => (dispatch, getState) => {
   }) => {
     dispatch({type: VIDEO_COMPLETE, payload: {...video, outputPath}});  
   })
+
+  ipcRenderer.on('conversion:progress', (event, {video, timemark}) => {
+      dispatch({type : VIDEO_PROGRESS , payload: {...video, timemark}});
+  })
 };
 
 // TODO: Open the folder that the newly created video
